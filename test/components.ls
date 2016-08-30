@@ -1,9 +1,9 @@
 require! assert
-{gen, button} = require \./darkbs
+{gen, button} = require \./utils
 
 describe \Components ->
   describe \Buttons ->
-    origin = (gen button) \button
+    origin = gen \button button
     classes = origin.attr \class .split ' '
     specify 'Default color' ->
       <[btn btn-secondary]>forEach (name) ->

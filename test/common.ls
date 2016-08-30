@@ -1,5 +1,5 @@
 require! assert
-{gen, class-name} = require \./darkbs
+{class-name} = require \./utils
 
 describe 'Utility classes' ->
   all = class-name do

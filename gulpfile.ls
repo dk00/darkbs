@@ -19,7 +19,7 @@ gulp.task \clean ->
 output-dir = \.
 map-options =
   includeContent: false
-  sourceRoot: \https://raw.githubusercontent.com/dk00/darkbs
+  sourceRoot: \https://raw.githubusercontent.com/dk00/darkbs/master
 
 gulp.task \sass ->
   Promise.all <[expanded compressed]>map (style) -> new Promise (resolve) ->
