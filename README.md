@@ -1,11 +1,11 @@
 # darkbs
 
-Dark color scheme & some functional [Bootstrap] [components][react]
+Dark color scheme & some functional [Bootstrap][bs] [components][react]
 
 [![NPM version][npm-image]][npm-url]
 [![build status][travis-image]][travis-url]
 
-[Bootstrap]: https://github.com/twbs/bootstrap
+[bs]: https://github.com/twbs/bootstrap
 [react]: https://github.com/facebook/react
 [travis-image]: https://travis-ci.org/dk00/darkbs.svg?branch=master
 [travis-url]: https://travis-ci.org/dk00/darkbs
@@ -17,9 +17,9 @@ Dark color scheme & some functional [Bootstrap] [components][react]
 Black background color scheme, overrides colors only.
 Use this by loading the compiled css after Bootstrap.
 
-'''html
+```html
 <link rel="stylesheet" href="//npmcdn.com/darkbs/dist/darkbs.css">
-'''
+```
 
 ## Class Names
 

@@ -9,6 +9,7 @@ require! {
   \vinyl-buffer : buffer
   \gulp-rename : rename
   \gulp-uglify : uglify
+  \gulp-slm : slm
   \gulp-server-livereload : server
 }
 
@@ -60,8 +61,14 @@ gulp.task \bundle ->
 
 gulp.task \dist <[sass bundle]>
 
+gulp.task \slm ->
+  gulp.src \test/*slm
+  .pipe slm!
+  .pipe gulp.dest \test
+
 gulp.task \watch ->
   gulp.watch <[sass/*]> <[sass]>
+  gulp.watch \test/*slm <[slm]>
 
 gulp.task \test <[dist]> (done) ->
   exec 'mocha --compilers ls:livescript'
@@ -71,8 +78,8 @@ gulp.task \test <[dist]> (done) ->
       throw if code
       done!
 
-gulp.task \server ->
-  gulp.src <[dist test]>
+gulp.task \server <[watch]> ->
+  gulp.src [\test output-dir]
   .pipe server {host: \0.0.0.0, +livereload}
 
-gulp.task \default <[sass watch server]>
+gulp.task \default <[sass slm server]>

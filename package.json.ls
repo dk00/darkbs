@@ -44,6 +44,7 @@ dev-dependencies:
   \vinyl-buffer : ''
   \gulp-rename : ''
   \gulp-uglify : ''
+  \gulp-slm : ''
   \gulp-server-livereload : ''
   mocha: ''
   cheerio: ''
