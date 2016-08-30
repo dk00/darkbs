@@ -20,7 +20,7 @@ class-name = (options || {}) ->
     hidden-class options.hidden
 
 detach = (props || {}, keys || []) ->
-  {[k, props[k]] for k of props when !keys.includes k}
+  {[k, props[k]] for k of props when !keys.some (== k)}
 
 element = (keys || {}, class-name) ->
   ({tag-name || \div}: props) ->
