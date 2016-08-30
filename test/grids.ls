@@ -17,6 +17,18 @@ describe 'Grid system' ->
     for viewport, width of opts
       assert //col-#viewport-#width//test classes
 
+  specify 'Column positions .offset .pull .push' ->
+    opts =
+      xs: pull: 2
+      sm: push: 3 size: 6
+      md: offset: 4
+    classes = get-class \div col, opts
+    console.log classes
+    for viewport, pos of opts
+      for type, width of pos
+        head = if type == \size then \col else type
+        assert //#head-#viewport-#width//test classes
+
   specify 'Additional class names' ->
     class-name = 'myclass test'
     classes = get-class \div col, {class-name}

@@ -60,13 +60,14 @@ Almost all other elements also accept these options.
 `Object` → `ReactElement`
 - `fluid`: Use `true` for a full width container
 
-### `row([props])`
+### `row()`
 
-### `col([{xs, sm, md, lg, xl}])`
-- `xs`, `sm`, `md`, `lg`, `xl`
-  - [x] `size`
-  - [ ] `offset`
-  - [ ] `pull`
+### `col([{xs, sm, md, lg, xl}: size])`
+- `xs`, `sm`, `md`, `lg`, `xl` &lt;Number&gt; | &lt;Object&gt;
+  - `size`
+  Column width
+  - `offset`, `push`, `pull`
+  Column position
 
 
 ## Components
