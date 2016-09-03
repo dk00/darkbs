@@ -1,0 +1,19 @@
+=form-control-focus
+  &:focus
+    color: $input-color-focus
+    background-color: $input-bg-focus
+    border-color: $input-border-focus
+
+.form-control
+  color: $input-color
+  background-color: $input-bg
+  border-color: $input-border-color
+
+  +form-control-focus
+
+  &::placeholder
+    color: $input-color-placeholder
+
+  &:disabled,
+  &[readonly]
+    background-color: $input-bg-disabled

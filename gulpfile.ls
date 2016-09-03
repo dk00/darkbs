@@ -21,11 +21,18 @@ map-options =
   includeContent: false
   sourceRoot: \https://raw.githubusercontent.com/dk00/darkbs/master
 
+retry-sass = 0
 gulp.task \sass ->
-  Promise.all <[expanded compressed]>map (style) -> new Promise (resolve) ->
+  Promise.all <[expanded compressed]>map (style, i) -> new Promise (resolve) ->
+    build = sass outputStyle: style
+    build.on \error ->
+      @emit \end
+      if i == 0 && retry-sass-- > 0
+        setTimeout (-> gulp.start \sass), 77
+
     gulp.src \sass/*sass
     .pipe source-maps.init!
-    .pipe sass outputStyle: style
+    .pipe build
     |> ->
       if style == \compressed then
         it.pipe rename suffix: \.min
@@ -35,6 +42,7 @@ gulp.task \sass ->
       it.pipe source-maps.write \. map-options
       .pipe gulp.dest output-dir
       .on \end resolve
+  .then -> (retry-sass := 7)
 
 bundle-name = \darkbs.js
 
@@ -79,7 +87,10 @@ gulp.task \test <[dist]> (done) ->
       done!
 
 gulp.task \server <[watch]> ->
-  gulp.src [\test/*.html "#output-dir/*.js" "#output-dir/*.css"]
-  .pipe server {host: \0.0.0.0, +livereload}
+  gulp.src [\test output-dir]
+  .pipe server host: \0.0.0.0 livereload:
+    enable: true
+    filter: (path, pass) ->
+      pass /(index\.ls|\.(js|css|html))$/test path
 
 gulp.task \default <[sass slm server]>

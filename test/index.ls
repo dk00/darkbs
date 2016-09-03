@@ -22,26 +22,40 @@ sample-paragraph =
   Nunc vehicula posuere aliquet. Sed imperdiet interdum lobortis.'
   ...
 
-if typeof describe != \function
-  @describe = (, run) -> run!
-
-<- describe 'Rendering in the browser'
-
 if preact?
   {h, render} = preact
 else
   h = require \react .createElement
   render = require \react-dom/server .renderToStaticMarkup
 
-{container, row, col} = darkbs ? require \../darkbs
+{element, container, row, col, button, input} = darkbs ? require \../darkbs
+colors = <[primary secondary info success danger warning]>
+
+buttons = ->
+  items = colors.map ->
+    [h button, color: it, \Knopf ; ' ']
+  .reduce (++)
+  h col, md: 8, ...items
+
+form = ->
+  h do
+    row
+    {}
+    h col, md: 2, h input, placeholder: \Eingabe
+    h col, md: 2, h input, placeholder: \Eingabe disabled: true
 
 app = ->
   h do
     container
     fluid: true
+    h row, {} h buttons
+    h form
     h row, {} ...[6 3 2 1]map -> h col, md: it, "col-md-#it"
 
 result = render (h app), document?querySelector \#app-root
 
-specify 'Rendered the sample app with non-empty result' ->
-  (require? \assert) result
+try require! tape
+if tape
+  that.test 'Render sample app' (t) ->
+    t.ok result, 'with non-empty result'
+    t.end!
