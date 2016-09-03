@@ -29,12 +29,16 @@ Use this by loading the compiled css after Bootstrap.
 
 - `options` &lt;Object&gt; | &lt;String&gt;
   - [ ] spacing
+  - [ ] `list` &lt;Object&gt;
+    - `inline`
+    - `unstyled`
   - [x] `text` &lt;Array&gt;
     Add `text-` classes
   - [ ] `text` &lt;Object&gt;
     - [ ] `align`
     - [ ] `transform`
     - [ ] `color`
+    - [ ] `truncate`
   - [ ] `color`
   - [ ] `font`
   - [ ] `bg`, `background`
@@ -52,6 +56,17 @@ Use this by loading the compiled css after Bootstrap.
     Add `.hidden-*-down` and `.hidden-*-up`.
 
 A structural way to use utilitiy classes, return Bootstrap class names.
+
+### `element([{tagName='div', className}])`
+`Object` → `ReactElement`
+
+- `tagName` &lt;String&gt; | &lt;ReactClass&gt;
+  The first argument to pass to `h()` or `createElement()`, can be anything
+  acceptable by that.
+- `className` &lt;Object&gt; | &lt;String&gt;
+  All options specified in `className()` are available.
+
+Base component to create arbitrary elements.
 
 
 ## Layout
