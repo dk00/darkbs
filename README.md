@@ -18,14 +18,16 @@ Black background color scheme, overrides colors only.
 Use this by loading the compiled css after Bootstrap.
 
 ```html
-<link rel="stylesheet" href="//npmcdn.com/darkbs/dist/darkbs.css">
+<link rel="stylesheet" href="//npmcdn.com/darkbs/darkbs.css">
 ```
 
-## Class Names
+
+## Top-Level API
 
 ### `className(options)`
 `Object` → `String`
-- `options` &lt;Object&gt;
+
+- `options` &lt;Object&gt; | &lt;String&gt;
   - [ ] spacing
   - [x] `text` &lt;Array&gt;
     Add `text-` classes
@@ -46,18 +48,16 @@ Use this by loading the compiled css after Bootstrap.
   - [ ] `embed`, `embedResponsive`
   - [x] `active` &lt;Boolean&gt;
   - [x] `hidden` &lt;String&gt;
-    - `down`
-    - `up`
+    - `down`, `up`
     Add `.hidden-*-down` and `.hidden-*-up`.
 
 A structural way to use utilitiy classes, return Bootstrap class names.
-Almost all other elements also accept these options.
 
 
 ## Layout
 
 ### `container({[fluid=false]})`
-`Object` → `ReactElement`
+
 - `fluid`: Use `true` for a full width container
 
 ### `row()`

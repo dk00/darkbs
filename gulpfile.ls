@@ -1,6 +1,6 @@
 require! {
   fs: unlinkSync: unlink
-  child_process: {exec}
+  child_process: {spawn}
   gulp
   \gulp-sourcemaps : source-maps
   \rollup-stream
@@ -71,15 +71,13 @@ gulp.task \watch ->
   gulp.watch \test/*slm <[slm]>
 
 gulp.task \test <[dist]> (done) ->
-  exec 'mocha --compilers ls:livescript'
-    ..stdout.pipe process.stderr
-    ..stderr.pipe process.stderr
-    ..on \exit (code) ->
-      throw if code
-      done!
+  spawn 'lsc test/all | faucet' shell: true stdio: \inherit
+  .on \exit ->
+    throw if it
+    done!
 
 gulp.task \server <[watch]> ->
-  gulp.src [\test output-dir]
+  gulp.src [\test/*.html "#output-dir/*.js" "#output-dir/*.css"]
   .pipe server {host: \0.0.0.0, +livereload}
 
 gulp.task \default <[sass slm server]>

@@ -1,26 +1,25 @@
-require! assert
-{class-name} = require \./utils
+require! tape
+{class-name} = require \../darkbs
 
-describe 'Utility classes' ->
-  all = class-name do
+tape 'Class name' (t) ->
+  name = \test
+  t.equal do
+    class-name \test
+    name
+    'should return the string unchanged'
+  t.notOk class-name!, 'should return a falsely value'
+
+  options =
     text: <[nowrap lowercase]>
     hidden:
       down: \sm
       up: \lg
     active: true
 
-  specify '.active class' ->
-    assert /active/test all
+  result = class-name options
 
-  specify '.hidden-*-{up|down}' ->
-    down-only = class-name hidden: \xs
-    up-only = class-name hidden: up: \md
+  <[text-nowrap text-lowercase hidden-sm-down hidden-lg-up active]>
+  .forEach ->
+    t.ok (0 <= result.search it), "should conain #it"
 
-    [/hidden-sm-down/ /hidden-lg-up/]forEach ->
-      assert it.test all
-    assert.equal \hidden-xs-down down-only
-    assert.equal \hidden-md-up up-only
-
-  specify '.text-*' ->
-    [/nowrap/ /lowercase/]forEach ->
-      assert it.test all
+  t.end!

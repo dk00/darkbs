@@ -1,32 +1,33 @@
-h = (try require \react .createElement) ||
-  (try require \preact .h) ||
-  React?createElement || preact?h
+h = void
+setup = (h := )
 
-setCreateElement = (h := )
+setup preact?h || React?createElement ||
+  (try require \preact .h) || (try require \react .createElement)
 
-join = (-> []concat it .filter (-> it) .join ' ')
+function join => []concat it .filter (-> it) .join ' '
 
 viewports = <[xs sm md lg xl]>
 
-hidden-class = (options || {}) ->
+function hidden-class(options || {})
   options = down: options if typeof options == \string
   join <[down up]>map ->
     "hidden-#that-#it" if options[it]
 
-class-name = (options || {}) ->
+function class-name(options || {})
+  return options if typeof options != \object
   join items =
     join (options.text || [])map -> "text-#it"
     \active if options.active
     hidden-class options.hidden
 
-detach = (props || {}, keys || []) ->
+function drop(keys || [], props || {})
   {[k, props[k]] for k of props when !keys.some (== k)}
 
-element = (keys || {}, class-name) ->
+function wrap(keys || {}, class-name)
   ({tag-name || \div}: props) ->
-    h tag-name, (detach props, [\tagName \className] ++ keys)
+    h tag-name, (drop [\tagName \className] ++ keys, props)
     <<< class-name: join [join class-name props; props.class-name]
 
 ``
-export {join, viewports, element, className, setCreateElement}
-export default className``
+export {join, wrap, viewports, className}
+export default setup``

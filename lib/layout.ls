@@ -1,11 +1,11 @@
-``import {element, join, viewports} from './common'``
+``import {wrap, join, viewports} from './common'``
 
-container = element \fluid ->
+container = wrap \fluid ->
   \container + if it.fluid then \-fluid else ''
 
-row = element [] -> \row
+row = wrap [] -> \row
 
-col = element viewports, (props) ->
+col = wrap viewports, (props) ->
   get-size = -> it?size || +it
   sizes = (|| \col-sm-4) <| join viewports.map (viewport) ->
     "col-#viewport-#that" if get-size props[viewport]

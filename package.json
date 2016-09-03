@@ -47,7 +47,8 @@
     "gulp-uglify": "",
     "gulp-slm": "",
     "gulp-server-livereload": "",
-    "mocha": "",
+    "tape": "",
+    "faucet": "",
     "cheerio": "",
     "react": "",
     "react-dom": ""

@@ -1,6 +1,6 @@
-``import {element} from './common'``
+``import {wrap} from './common'``
 
-button = element <[color size outline block]> \
+button = wrap <[color size outline block]> \
 ({color || \secondary, size, outline, block}) ->
   [\btn "btn-#color"]
 

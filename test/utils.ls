@@ -1,9 +1,13 @@
-h = require \react .createElement
-render-string = require \react-dom/server .renderToStaticMarkup
-cheerio = require \cheerio .load
-export gen = (selector, type, options) ->
-  (cheerio . render-string . h) type, options <| selector
-export get-class = ->
-  gen ... .attr \class
+require! {
+  react: createElement: h
+  \react-dom/server : renderToStaticMarkup: render-string
+  cheerio
+}
+
+export function render
+  cheerio.load render-string h ...
+
+export function assert-class(t, $, name)
+  t.ok ($ name .length), "should have class #name"
 
 exports <<< require \../darkbs
