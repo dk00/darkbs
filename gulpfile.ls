@@ -1,6 +1,6 @@
 require! {
   fs: unlinkSync: unlink
-  child_process: {spawn}
+  child_process: {exec}
   gulp
   \gulp-sourcemaps : source-maps
   \rollup-stream
@@ -71,10 +71,12 @@ gulp.task \watch ->
   gulp.watch \test/*slm <[slm]>
 
 gulp.task \test <[dist]> (done) ->
-  spawn 'lsc test/all | faucet' shell: true stdio: \inherit
-  .on \exit ->
-    throw if it
-    done!
+  exec 'lsc test/all | faucet'  stdio: \inherit
+    ..stdout.pipe process.stdout
+    ..stderr.pipe process.stderr
+    ..on \exit ->
+      throw if it
+      done!
 
 gulp.task \server <[watch]> ->
   gulp.src [\test/*.html "#output-dir/*.js" "#output-dir/*.css"]

@@ -5,9 +5,8 @@ require! {
 }
 
 export function render
-  cheerio.load render-string h ...
-
-export function assert-class(t, $, name)
-  t.ok ($ name .length), "should have class #name"
+  $ = cheerio.load render-string h ...
+  $.has = (selector) -> ($ selector .length) > 0
+  $
 
 exports <<< require \../darkbs

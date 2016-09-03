@@ -1,5 +1,5 @@
 require! tape
-{assert-class, container, row, col, render} = require \./utils
+{container, row, col, render} = require \./utils
 
 tape 'Grid system' (t) ->
   cases =
@@ -10,13 +10,14 @@ tape 'Grid system' (t) ->
     * name: \.row
       $: render row
   cases.forEach ({name, $}) ->
-    assert-class t, $, name
+    t.ok ($.has name), "should have class #name"
 
   t.test 'Column width' (t) ->
     options = xs: 12 sm: 10 md: 8 lg: 6 xl: 4
     $ = render col, options
     for vp, width of options
-      assert-class t, $, ".col-#vp-#width"
+      selector = ".col-#vp-#width"
+      t.ok ($.has selector), "should have width #{selector}"
     t.end!
 
   t.test 'Column positions' (t) ->
@@ -26,7 +27,7 @@ tape 'Grid system' (t) ->
       md: offset: 4
     $ = render col, options
     <[.pull-xs-2 .push-sm-3 .col-sm-6 .offset-md-4]>forEach ->
-      assert-class t, $, it
+      t.ok ($.has it), "should have class #it"
     t.end!
 
   t.end!
