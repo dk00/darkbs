@@ -22,6 +22,20 @@ sample-paragraph =
   Nunc vehicula posuere aliquet. Sed imperdiet interdum lobortis.'
   ...
 
+sample-code = '''
+function drop(keys || [], props || {})
+  {[k, props[k]] for k of props when !keys.some (== k)}
+
+function wrap(keys, get-class)
+  (props) ->
+    element (drop [] ++ keys, props)
+    <<< class-name: [get-class props; props.class-name]
+
+function element({tag-name || \\div}: props)
+  h tag-name, (drop [\\tagName] props)
+  <<< class-name: class-name props.class-name '''
+
+
 if preact?
   {h, render} = preact
 else
@@ -37,20 +51,35 @@ buttons = ->
   .reduce (++)
   h col, md: 8, ...items
 
-form = ->
+test-form = ->
   h do
     row
     {}
     h col, md: 2, h input, placeholder: \Eingabe
     h col, md: 2, h input, placeholder: \Eingabe disabled: true
+    h col, md: 2, h input, defaultValue: \Eingabe
+    h col, md: 2, h input, defaultValue: \Eingabe disabled: true
+
+code = ->
+  h do
+    \div
+    {}
+    'Some '
+    h \code {} \code
+    h \pre {} sample-code
+
+article = ->
+  h \div {} ...sample-paragraph.map ->
+    h \p {} it
 
 app = ->
   h do
     container
     fluid: true
     h row, {} h buttons
-    h form
+    h test-form
     h row, {} ...[6 3 2 1]map -> h col, md: it, "col-md-#it"
+    h row, {} ...[h col, md: 6, h code; h col, md: 6, h article]
 
 result = render (h app), document?querySelector \#app-root
 
