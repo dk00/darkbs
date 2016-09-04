@@ -18,7 +18,7 @@ Black background color scheme, overrides colors only.
 Use this by loading the compiled css after Bootstrap.
 
 ```html
-<link rel="stylesheet" href="//npmcdn.com/darkbs/darkbs.css">
+<link rel="stylesheet" href="//unpkg.com/darkbs/darkbs.css">
 ```
 
 
