@@ -77,12 +77,20 @@ Base component to create arbitrary elements.
 
 ### `row()`
 
-### `col([{xs, sm, md, lg, xl}: size])`
+### `col([{xs, sm, md, lg, xl}])`
 - `xs`, `sm`, `md`, `lg`, `xl` &lt;Number&gt; | &lt;Object&gt;
+  - `width`
+  Column width, valid values are `1..12` or `'auto'`.
   - `size`
-  Column width
+  Alias for `width`
   - `offset`, `push`, `pull`
   Column position
+
+For the smallest viewport with options, if `width` or `size` is not set,
+`col-*` will be automatically added for it.
+Subject to change with [Flexbox grid system][flex].
+
+[flex]: http://v4-alpha.getbootstrap.com/layout/flexbox-grid/
 
 
 ## Components

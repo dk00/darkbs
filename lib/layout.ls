@@ -6,13 +6,15 @@ container = wrap \fluid ->
 row = wrap [] -> \row
 
 col = wrap viewports, (props) ->
-  get-size = -> it?size || +it
-  sizes = (|| \col-sm-4) <| join viewports.map (viewport) ->
-    "col-#viewport-#that" if get-size props[viewport]
-  positions = viewports.map (vp) ->
-    join <[offset push pull]>map ->
+  get-width = -> +it || it?width || it?size
+  min-vp = viewports.find (props.) or viewports.0
+  auto-width = unless get-width props[min-vp] then "col-#min-vp"
+
+  (-> [auto-width, it]) viewports.map (vp) ->
+    width = "col-#vp-#that" if get-width props[vp]
+    positions = <[offset push pull]>map ->
       "#it-#vp-#that" if props[vp]?[it]
 
-  [sizes] ++ positions
+    [width, positions]
 
 ``export {container, row, col}``

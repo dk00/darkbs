@@ -1,5 +1,5 @@
 name: \darkbs
-version: \0.0.1
+version: \0.0.2
 description: 'Functional Bootstrap components & dark color scheme'
 
 keywords: <[component bootstrap react]>

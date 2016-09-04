@@ -12,6 +12,18 @@ tape 'Grid system' (t) ->
   cases.forEach ({name, $}) ->
     t.ok ($.has name), "should have class #name"
 
+  t.test 'Default column width' (t) ->
+    $ = render col
+    name = \.col-xs
+    t.ok ($.has name), "Should have default class #name"
+    t.end!
+
+  t.test 'Auto column width' (t) ->
+    $ = render col, md: {push: 3} lg: push: 4 width: 6
+    name = \.col-md
+    t.ok ($.has name), "Should automatically assign class #name"
+    t.end!
+
   t.test 'Column width' (t) ->
     options = xs: 12 sm: 10 md: 8 lg: 6 xl: 4
     $ = render col, options
@@ -24,9 +36,9 @@ tape 'Grid system' (t) ->
     options =
       xs: pull: 2
       sm: push: 3 size: 6
-      md: offset: 4
+      md: offset: 4 width: 5
     $ = render col, options
-    <[.pull-xs-2 .push-sm-3 .col-sm-6 .offset-md-4]>forEach ->
+    <[.pull-xs-2 .push-sm-3 .col-md-5 .col-sm-6 .offset-md-4]>forEach ->
       t.ok ($.has it), "should have class #it"
     t.end!
 
