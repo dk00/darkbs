@@ -1,9 +1,6 @@
 h = void
 setup = (h := )
 
-setup preact?h || React?createElement ||
-  (try require \preact .h) || (try require \react .createElement)
-
 function join => []concat it .filter (-> it) .join ' '
 
 viewports = <[xs sm md lg xl]>
@@ -24,7 +21,7 @@ function class-name(options || {})
     hidden-class options.hidden
   ]
 
-function drop(keys || [], props || {})
+function drop(keys, props)
   {[k, props[k]] for k of props when !keys.some (== k)}
 
 function wrap(keys, get-class)
@@ -37,5 +34,4 @@ function element({tag-name || \div}: props)
   <<< class-name: class-name props.class-name
 
 ``
-export {join, wrap, viewports, element, className}
-export default setup``
+export {setup, join, wrap, viewports, element, className}``

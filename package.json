@@ -31,7 +31,7 @@
   "scripts": {
     "start": "gulp",
     "prepublish": "gulp dist",
-    "test": "gulp test"
+    "test": "gulp coverage"
   },
   "repository": "dk00/darkbs",
   "devDependencies": {
@@ -49,6 +49,7 @@
     "gulp-server-livereload": "",
     "tape": "",
     "faucet": "",
+    "istanbul": "",
     "cheerio": "",
     "react": "",
     "react-dom": ""

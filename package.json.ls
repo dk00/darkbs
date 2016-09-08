@@ -29,7 +29,7 @@ main: \darkbs.js
 scripts:
   start: \gulp
   prepublish: 'gulp dist'
-  test: 'gulp test'
+  test: 'gulp coverage'
 
 repository: \dk00/darkbs
 
@@ -48,6 +48,7 @@ dev-dependencies:
   \gulp-server-livereload : ''
   tape: ''
   faucet: ''
+  istanbul: ''
   cheerio: ''
   react: ''
   \react-dom : ''

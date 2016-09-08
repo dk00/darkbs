@@ -1,5 +1,5 @@
 require! {
-  fs: unlinkSync: unlink
+  fs: {readFileSync: readFile, writeFileSync: writeFile , unlinkSync: unlink}
   child_process: {exec}
   gulp
   \gulp-sourcemaps : source-maps
@@ -80,6 +80,23 @@ gulp.task \watch ->
 
 gulp.task \test <[dist]> (done) ->
   exec 'lsc test/all | faucet'  stdio: \inherit
+    ..stdout.pipe process.stdout
+    ..stderr.pipe process.stderr
+    ..on \exit ->
+      throw if it
+      done!
+
+ignore-umd = ->
+  lines = readFile bundle-name .toString!split \\n
+  result = if /typeof/test lines.1
+    [lines.0] ++ '/* istanbul ignore next */' ++ lines.slice 1
+  else
+    lines
+  writeFile bundle-name, result.join \\n
+
+gulp.task \coverage <[dist]> (done) ->
+  ignore-umd!
+  exec 'istanbul cover lsc test/all.ls'
     ..stdout.pipe process.stdout
     ..stderr.pipe process.stderr
     ..on \exit ->

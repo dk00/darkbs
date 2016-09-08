@@ -2,4 +2,4 @@
 export * from './layout'
 export * from './components'
 export * from './forms'
-export {className, element} from './common'``
+export {className, element, setup} from './common'``

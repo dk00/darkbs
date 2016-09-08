@@ -12,12 +12,12 @@ tape 'Class name' (t) ->
   options =
     text: <[nowrap lowercase]>
     hidden:
-      down: \sm
       up: \lg
     active: true
 
-  result = class-name options
-  $ = render element, className: [name, [options]]
+  result = class-name [options, hidden: \sm]
+  $ = render element, className: [name, [options] hidden: \sm]
+
   t.ok ($ ".#name" .length), "should have #name in the element"
 
   <[text-nowrap text-lowercase hidden-sm-down hidden-lg-up active]>

@@ -42,7 +42,9 @@ else
   h = require \react .createElement
   render = require \react-dom/server .renderToStaticMarkup
 
-{element, container, row, col, button, input} = darkbs ? require \../darkbs
+{element, container, row, col, button, input, setup} = \
+darkbs ? require \../darkbs
+setup h
 colors = <[primary secondary info success danger warning]>
 
 buttons = ->
