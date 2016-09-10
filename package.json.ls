@@ -46,9 +46,20 @@ dev-dependencies:
   \gulp-uglify : ''
   \gulp-slm : ''
   \gulp-server-livereload : ''
+
   tape: ''
-  faucet: ''
-  istanbul: ''
+  \tap-colorize : ''
+  \gulp-tape : ''
+
   cheerio: ''
   react: ''
   \react-dom : ''
+
+  \babel-core : ''
+  \babel-plugin-transform-es2015-modules-commonjs : ''
+
+  istanbul: ''
+  \cli-color : ''
+  through2: ''
+  \source-map : ''
+  \prelude-ls : ''

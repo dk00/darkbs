@@ -1,5 +1,5 @@
 require! {
-  fs: {readFileSync: readFile, writeFileSync: writeFile , unlinkSync: unlink}
+  fs: {unlinkSync: unlink}
   child_process: {exec}
   gulp
   \gulp-sourcemaps : source-maps
@@ -11,6 +11,8 @@ require! {
   \gulp-uglify : uglify
   \gulp-slm : slm
   \gulp-server-livereload : server
+  \gulp-tape : tape
+  \tap-colorize
 }
 
 gulp.task \clean ->
@@ -78,30 +80,16 @@ gulp.task \watch ->
   gulp.watch <[sass/*]> <[sass]>
   gulp.watch \test/*slm <[slm]>
 
-gulp.task \test <[dist]> (done) ->
-  exec 'lsc test/all | faucet'  stdio: \inherit
-    ..stdout.pipe process.stdout
-    ..stderr.pipe process.stderr
-    ..on \exit ->
-      throw if it
-      done!
+gulp.task \coverage ->
+  {instrument, hook-require, write-reports} = require \./gulp/instrument
+  ins = gulp.src \lib/*
+  .pipe instrument!
+  .pipe hook-require!
 
-ignore-umd = ->
-  lines = readFile bundle-name .toString!split \\n
-  result = if /typeof/test lines.1
-    [lines.0] ++ '/* istanbul ignore next */' ++ lines.slice 1
-  else
-    lines
-  writeFile bundle-name, result.join \\n
-
-gulp.task \coverage <[dist]> (done) ->
-  ignore-umd!
-  exec 'istanbul cover lsc test/all.ls'
-    ..stdout.pipe process.stdout
-    ..stderr.pipe process.stderr
-    ..on \exit ->
-      throw if it
-      done!
+  <- ins.on \end
+  gulp.src \./test/all.ls
+  .pipe tape reporter: tap-colorize!
+  .pipe write-reports!
 
 gulp.task \server <[watch]> ->
   gulp.src [\test output-dir]

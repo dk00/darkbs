@@ -9,6 +9,7 @@ export function render
   $.has = (selector) -> ($ selector .length) > 0
   $
 
-darkbs = require \../darkbs
+darkbs = (try require \../lib/index) || (try require \../darkbs)
+
 darkbs.setup h
 exports <<< darkbs

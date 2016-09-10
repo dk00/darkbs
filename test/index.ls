@@ -43,7 +43,7 @@ else
   render = require \react-dom/server .renderToStaticMarkup
 
 {element, container, row, col, button, input, setup} = \
-darkbs ? require \../darkbs
+darkbs ? require \../lib/index
 setup h
 colors = <[primary secondary info success danger warning]>
 

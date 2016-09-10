@@ -4,6 +4,8 @@ Dark color scheme & some functional [Bootstrap][bs] [components][react]
 
 [![NPM version][npm-image]][npm-url]
 [![build status][travis-image]][travis-url]
+[![coverage][codecov-image]][codecov-url]
+[![dependencies][dm-image]][dm-url]
 
 [bs]: https://github.com/twbs/bootstrap
 [react]: https://github.com/facebook/react
@@ -11,6 +13,11 @@ Dark color scheme & some functional [Bootstrap][bs] [components][react]
 [travis-url]: https://travis-ci.org/dk00/darkbs
 [npm-image]: https://img.shields.io/npm/v/darkbs.svg
 [npm-url]: https://www.npmjs.com/package/darkbs
+[codecov-image]: https://codecov.io/gh/dk00/darkbs/branch/master/graph/badge.svg
+[codecov-url]: https://codecov.io/gh/dk00/darkbs
+[dm-image]: https://david-dm.org/dk00/darkbs.svg
+[dm-url]: https://david-dm.org/dk00/darkbs
+
 
 ## Color Scheme
 
