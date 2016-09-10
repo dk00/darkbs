@@ -120,9 +120,6 @@ export function write-reports({log-summary}:opts?)
           |> obj-to-pairs
           |> filter ([, report-opts]) -> !!report-opts?.dir
           |> each ([report-name, {dir}]) ->
-            json = "#{path.resolve dir}/coverage.json"
-            writeFile json, JSON.stringify global[coverage-variable],, 2
-            console.log "Writing coverage object [#json]"
             console.log "Writing #{report-name} reports at [#{path.resolve dir}]"
         console.log "============================================================================="
         console.log ""
@@ -147,3 +144,5 @@ export function write-reports({log-summary}:opts?)
         |> each ([report-name, report-opts]) ->
           report = Report.create report-name, report-opts
             ..write-report collector, true
+          json = "#{path.resolve report-opts.dir}/coverage.json"
+          writeFile json, JSON.stringify global[coverage-variable],, 2
