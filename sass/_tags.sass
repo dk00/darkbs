@@ -1,0 +1,30 @@
+=tag-variant($color)
+  background-color: $color
+  &[href]
+    +hover-focus
+      background-color: darken($color, 10%)
+
+.tag
+  color: $tag-color
+
+a.tag
+  +hover-focus
+    color: $tag-link-hover-color
+
+.tag-default
+  +tag-variant($tag-default-bg)
+
+.tag-primary
+  +tag-variant($tag-primary-bg)
+
+.tag-success
+  +tag-variant($tag-success-bg)
+
+.tag-info
+  +tag-variant($tag-info-bg)
+
+.tag-warning
+  +tag-variant($tag-warning-bg)
+
+.tag-danger
+  +tag-variant($tag-danger-bg)
