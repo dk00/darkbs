@@ -28,6 +28,7 @@ gulp.task \sass ->
   Promise.all <[expanded compressed]>map (style, i) -> new Promise (resolve) ->
     build = sass outputStyle: style
     build.on \error ->
+      console.log it
       @emit \end
       if i == 0 && retry-sass-- > 0
         setTimeout (-> gulp.start \sass), 77

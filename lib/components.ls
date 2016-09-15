@@ -6,4 +6,9 @@ button = wrap <[color size outline block]> \
 
 button.defaultProps = tag-name: \button type: \button
 
-``export {button}``
+tag = wrap <[color pill]> ({color, pill}) ->
+  [\tag "tag-#color" if pill then \tag-pill else '']
+
+tag.defaultProps = tag-name: \span, color: \default
+
+``export {button, tag}``

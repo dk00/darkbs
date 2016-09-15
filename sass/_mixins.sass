@@ -1,0 +1,14 @@
+=hover
+  &:hover
+    @content
+
+=hover-focus
+  @if $enable-hover-media-query
+    &:focus
+      @content
+    +hover
+      @content
+  @else
+    &:focus,
+    &:hover
+      @content

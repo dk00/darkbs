@@ -1,1 +1,1 @@
-require! <[./common ./grids ./buttons ./forms ./index]>
+require! <[./common ./grids ./buttons ./forms ./tags ./index]>

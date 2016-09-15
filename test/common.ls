@@ -1,5 +1,5 @@
 require! tape
-{render, assert-class, class-name, element} = require \./utils
+{render, class-name, element} = require \./utils
 
 tape 'Class name' (t) ->
   name = \test

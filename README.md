@@ -107,3 +107,7 @@ Subject to change with [Flexbox grid system][flex].
 - [ ] `size`
 - [ ] `outline`
 - [ ] `block`
+
+### `tag([options])`
+- [x] `color`
+- [x] `pill`

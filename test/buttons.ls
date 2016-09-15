@@ -1,5 +1,5 @@
 require! tape
-{assert-selector, render, button} = require \./utils
+{render, button} = require \./utils
 
 tape \Buttons (t) ->
   def = <[.btn .btn-secondary]>

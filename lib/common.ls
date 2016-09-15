@@ -12,10 +12,9 @@ function hidden-class(options || {})
 
 function class-name(options || {})
   return options if typeof options != \object
+  return join that if options.map? class-name
 
-  join if typeof options.map == \function
-    options.map class-name
-  else [
+  join [
     join (options.text || [])map -> "text-#it"
     \active if options.active
     hidden-class options.hidden
@@ -26,12 +25,14 @@ function drop(keys, props)
 
 function wrap(keys, get-class)
   (props) ->
-    element (drop [] ++ keys, props)
-    <<< class-name: [get-class props; props.class-name]
+    element Object.assign do
+      drop [] ++ keys, props
+      class-name: [get-class props; props.class-name]
 
 function element({tag-name || \div}: props)
-  h tag-name, (drop [\tagName] props)
-  <<< class-name: class-name props.class-name
+  h tag-name, Object.assign do
+    drop [\tagName] props
+    class-name: class-name props.class-name
 
 ``
 export {setup, join, wrap, viewports, element, className}``

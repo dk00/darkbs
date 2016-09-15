@@ -42,7 +42,7 @@ else
   h = require \react .createElement
   render = require \react-dom/server .renderToStaticMarkup
 
-{element, container, row, col, button, input, setup} = \
+{element, container, row, col, button, tag, input, setup} = \
 darkbs ? require \../lib/index
 setup h
 colors = <[primary secondary info success danger warning]>
@@ -62,6 +62,10 @@ test-form = ->
     h col, md: 2, h input, defaultValue: \Eingabe
     h col, md: 2, h input, defaultValue: \Eingabe disabled: true
 
+tags = ->
+  h col, md: 8, ...colors.map ->
+    [h tag, color: (it.replace \secondary \default), \tag; ' ']
+
 code = ->
   h do
     \div
@@ -75,13 +79,18 @@ article = ->
     h \p {} it
 
 app = ->
-  h do
-    container
-    fluid: true
-    h row, {} h buttons
-    h test-form
-    h row, {} ...[6 3 2 1]map -> h col, md: it, "col-md-#it"
-    h row, {} ...[h col, md: 6, h code; h col, md: 6, h article]
+  h container, fluid: true, h do
+    row
+    {}
+    h col, md: 2, \Menu
+    h col, md: 10, h do
+      container
+      fluid: true
+      h row, {} h buttons
+      h test-form
+      h row, {} h tags
+      h row, {} ...[6 3 2 1]map -> h col, md: it, "col-md-#it"
+      h row, {} ...[h col, md: 6, h code; h col, md: 6, h article]
 
 result = render (h app), document?querySelector \#app-root
 

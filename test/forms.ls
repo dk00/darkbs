@@ -1,5 +1,5 @@
 require! tape
-{render, assert-class, input} = require \./utils
+{render, input} = require \./utils
 
 tape 'Forms' (t) ->
   $ = render input
