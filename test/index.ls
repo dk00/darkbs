@@ -51,19 +51,19 @@ buttons = ->
   items = colors.map ->
     [h button, color: it, \Knopf ; ' ']
   .reduce (++)
-  h col, md: 8, ...items
+  h \div {} ...items
 
 test-form = ->
   h do
     row
     {}
-    h col, md: 2, h input, placeholder: \Eingabe
-    h col, md: 2, h input, placeholder: \Eingabe disabled: true
-    h col, md: 2, h input, defaultValue: \Eingabe
-    h col, md: 2, h input, defaultValue: \Eingabe disabled: true
+    h col, md: 3, h input, placeholder: \Eingabe
+    h col, md: 3, h input, placeholder: \Eingabe disabled: true
+    h col, md: 3, h input, defaultValue: \Eingabe
+    h col, md: 3, h input, defaultValue: \Eingabe disabled: true
 
 tags = ->
-  h col, md: 8, ...colors.map ->
+  h \div {} ...colors.map ->
     [h tag, color: (it.replace \secondary \default), \tag; ' ']
 
 code = ->
@@ -82,15 +82,18 @@ app = ->
   h container, fluid: true, h do
     row
     {}
-    h col, md: 2, \Menu
-    h col, md: 10, h do
+    h col, md: \auto, h do
       container
       fluid: true
+      h \a href: 'javascript: void 7', \Home
       h row, {} h buttons
       h test-form
       h row, {} h tags
-      h row, {} ...[6 3 2 1]map -> h col, md: it, "col-md-#it"
-      h row, {} ...[h col, md: 6, h code; h col, md: 6, h article]
+    h do
+      col
+      md: \auto
+      h code
+      h article
 
 result = render (h app), document?querySelector \#app-root
 

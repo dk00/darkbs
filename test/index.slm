@@ -4,7 +4,8 @@ html
     title Rendering Test
     meta charset="utf-8"
     meta name="viewport" content="width=device-width, initial-scale=1"
-    link rel="stylesheet" href="http://v4-alpha.getbootstrap.com/dist/css/bootstrap.min.css"
+    link rel="stylesheet" href="//v4-alpha.getbootstrap.com/dist/css/bootstrap.min.css"
+    link rel="stylesheet" href="//v4-alpha.getbootstrap.com/assets/css/docs-flexbox.min.css"
     link rel="stylesheet" href="darkbs.css"
     script src="//livescript.net/livescript-1.5.0-min.js"
     script src="//unpkg.com/preact"

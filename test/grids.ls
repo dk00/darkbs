@@ -24,6 +24,11 @@ tape 'Grid system' (t) ->
     t.ok ($.has name), "Should automatically assign class #name"
     t.end!
 
+  t.test 'Auto column width without other options' (t) ->
+    $ = render col, lg: \auto
+    t.ok $.has \.col-lg
+    t.end!
+
   t.test 'Column width' (t) ->
     options = xs: 12 sm: 10 md: 8 lg: 6 xl: 4
     $ = render col, options
