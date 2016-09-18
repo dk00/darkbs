@@ -1,0 +1,14 @@
+=bg-variant($parent, $color)
+  #{$parent}
+    color: #fff !important
+    background-color: $color !important
+
+  a#{$parent}
+    +hover-focus
+      background-color: darken($color, 10%) !important
+
++bg-variant(".bg-primary", $brand-primary)
++bg-variant(".bg-success", $brand-success)
++bg-variant(".bg-info", $brand-info)
++bg-variant(".bg-warning", $brand-warning)
++bg-variant(".bg-danger", $brand-danger)
