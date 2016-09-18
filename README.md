@@ -48,7 +48,7 @@ Use this by loading the compiled css after Bootstrap.
     - [ ] `truncate`
   - [ ] `color`
   - [ ] `font`
-  - [ ] `bg`, `background`
+  - [x] `bg`, `background`
   - [ ] `w`, `width`
   - [ ] `d`, `display`
   - [ ] `pull`

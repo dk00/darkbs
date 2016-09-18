@@ -54,17 +54,26 @@ buttons = ->
   h \div {} ...items
 
 test-form = ->
-  h do
-    row
-    {}
-    h col, md: 3, h input, placeholder: \Eingabe
-    h col, md: 3, h input, placeholder: \Eingabe disabled: true
-    h col, md: 3, h input, defaultValue: \Eingabe
-    h col, md: 3, h input, defaultValue: \Eingabe disabled: true
+  items =
+    * placeholder: \Eingabe
+    * placeholder: \Eingabe disabled: true
+    * defaultValue: \Eingabe
+    * defaultValue: \Eingabe disabled: true
+  h row, {} ...items.map ->
+    h col, md: 3, h input, it
 
 tags = ->
   h \div {} ...colors.map ->
     [h tag, color: (it.replace \secondary \default), \tag; ' ']
+
+backgrounds = ->
+  width = [4 3 2 1 1 1]
+  h row, {} ...colors.map (c, i) ->
+    attrs =
+      xs: width[i]
+      className:
+        bg: (c.replace \secondary \inverse)
+    h col, attrs, "col-xs-#{width[i]}"
 
 code = ->
   h do
@@ -86,9 +95,7 @@ app = ->
       container
       fluid: true
       h \a href: 'javascript: void 7', \Home
-      h row, {} h buttons
-      h test-form
-      h row, {} h tags
+      ...[buttons, test-form, tags, backgrounds]map h
     h do
       col
       md: \auto

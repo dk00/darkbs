@@ -5,20 +5,30 @@ function join => []concat it .filter (-> it) .join ' '
 
 viewports = <[xs sm md lg xl]>
 
-function hidden-class(options || {})
-  options = down: options if typeof options == \string
-  join <[down up]>map ->
-    "hidden-#that-#it" if options[it]
+function enable(name)
+  -> name if it
 
-function class-name(options || {})
+function prefix(name)
+  -> join <| []concat it .map -> "#name-#it"
+
+utilties =
+  text: prefix \text
+  bg: prefix \bg
+  active: enable \active
+  hidden: (options) ->
+    if typeof options == \string and options
+      return "hidden-#{that}-down"
+    join <[down up]>map ->
+      "hidden-#that-#it" if options[it]
+
+utilties.background = utilties.bg
+
+function class-name(options={})
   return options if typeof options != \object
   return join that if options.map? class-name
 
-  join [
-    join (options.text || [])map -> "text-#it"
-    \active if options.active
-    hidden-class options.hidden
-  ]
+  join <| for name, value of options
+    utilties[name]? value
 
 function drop(keys, props)
   {[k, props[k]] for k of props when !keys.some (== k)}
