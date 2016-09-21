@@ -9,7 +9,7 @@ Dark color scheme & some functional [Bootstrap][bs] [components][react]
 
 [bs]: https://github.com/twbs/bootstrap
 [react]: https://github.com/facebook/react
-[travis-image]: https://travis-ci.org/dk00/darkbs.svg?branch=master
+[travis-image]: https://travis-ci.org/dk00/darkbs.svg?branch=dev
 [travis-url]: https://travis-ci.org/dk00/darkbs
 [npm-image]: https://img.shields.io/npm/v/darkbs.svg
 [npm-url]: https://www.npmjs.com/package/darkbs

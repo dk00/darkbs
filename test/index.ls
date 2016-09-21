@@ -87,6 +87,16 @@ article = ->
   h \div {} ...sample-paragraph.map ->
     h \p {} it
 
+table = ->
+  h do
+    \table
+    class: \table
+    h \thead {} h \tr {} ...[\# 'Frist Name' 'Last Name' 'User Name']map ->
+      h \th {} it
+    h \tbody {} ...[to 2]map ->
+      h \tr {} ...[it; \b \c \d]map ->
+        h \td {} it
+
 app = ->
   h container, fluid: true, h do
     row
@@ -100,6 +110,7 @@ app = ->
       col
       md: \auto
       h code
+      h table
       h article
 
 result = render (h app), document?querySelector \#app-root
