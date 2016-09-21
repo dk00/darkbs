@@ -10,7 +10,7 @@ require! {
   \gulp-rename : rename
   \gulp-uglify : uglify
   \gulp-slm : slm
-  \gulp-server-livereload : server
+  \browser-sync
   \gulp-tape : tape
   \tap-colorize
 }
@@ -93,10 +93,9 @@ gulp.task \coverage ->
   .pipe write-reports!
 
 gulp.task \server <[watch]> ->
-  gulp.src [\test output-dir]
-  .pipe server host: \0.0.0.0 livereload:
-    enable: true
-    filter: (path, pass) ->
-      pass /(index\.ls|\.(js|css|html))$/test path
+  server = browser-sync.create!
+  server.init do
+    server: [\test output-dir]
+    files: [\test] ++ require \./package.json .files
 
 gulp.task \default <[sass slm server]>

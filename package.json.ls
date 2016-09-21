@@ -45,7 +45,7 @@ dev-dependencies:
   \gulp-rename : ''
   \gulp-uglify : ''
   \gulp-slm : ''
-  \gulp-server-livereload : ''
+  \browser-sync : ''
 
   tape: ''
   \tap-colorize : ''
