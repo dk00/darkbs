@@ -111,3 +111,12 @@ Subject to change with [Flexbox grid system][flex].
 ### `tag([options])`
 - [x] `color`
 - [x] `pill`
+
+
+### `backdrop({active})`
+### `modal({active, dismiss, children})`
+Return a modal/backdrop.
+
+- `active`: open state of the modal, pass `false` instead of removing modal to gain transition effects.
+- `dismiss`: event handler for dismissing the modal, called when clicking outside the modal.
+- `children`: modal content.

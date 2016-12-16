@@ -1,5 +1,5 @@
 name: \darkbs
-version: \0.0.2
+version: \0.0.3-0
 description: 'Functional Bootstrap components & dark color scheme'
 
 keywords: <[component bootstrap react]>
@@ -8,8 +8,6 @@ homepage: \https://github.com/dk00/darkbs
 bugs: \https://github.com/dk00/darkbs/issues
 license: \Unlicense
 
-engines:
-  node: '>= 4.2.0'
 
 files:
   \darkbs.css

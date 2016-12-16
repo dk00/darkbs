@@ -4,6 +4,7 @@ require! {
   cheerio
 }
 
+export h
 export function render
   $ = cheerio.load render-string h ...
   $.has = (selector) -> ($ selector .length) > 0

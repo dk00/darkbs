@@ -1,6 +1,5 @@
 require! {
-  fs: {unlinkSync: unlink}
-  child_process: {exec}
+  fs: unlinkSync: unlink
   gulp
   \gulp-sourcemaps : source-maps
   \rollup-stream

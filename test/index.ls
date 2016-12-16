@@ -35,21 +35,20 @@ function element({tag-name || \\div}: props)
   h tag-name, (drop [\\tagName] props)
   <<< class-name: class-name props.class-name '''
 
-
 if preact?
-  {h, render} = preact
+  {h, Component, render} = preact
 else
   h = require \react .createElement
   render = require \react-dom/server .renderToStaticMarkup
 
-{element, container, row, col, button, tag, input, setup} = \
+{element, container, row, col, button, tag, input, modal, backdrop, setup} = \
 darkbs ? require \../lib/index
 setup h
 colors = <[primary secondary info success danger warning]>
 
-buttons = ->
+function buttons {open-modal}
   items = colors.map ->
-    [h button, color: it, \Knopf ; ' ']
+    [h button, color: it, onClick: open-modal, \Knopf ; ' ']
   .reduce (++)
   h \div {} ...items
 
@@ -97,7 +96,11 @@ table = ->
       h \tr {} ...[it; \b \c \d]map ->
         h \td {} it
 
-app = ->
+function sample-modal
+  modal h, active: it.modal, dismiss: it.close-modal, children:
+    [h \div,, sample-paragraph]
+
+function app props
   h container, fluid: true, h do
     row
     {}
@@ -105,7 +108,10 @@ app = ->
       container
       fluid: true
       h \a href: 'javascript: void 7', \Home
-      ...[buttons, test-form, tags, backgrounds]map h
+      ...[buttons, test-form, tags, backgrounds]map ->
+        h it, props
+      backdrop h, active: props.modal
+      sample-modal props
     h do
       col
       md: \auto
@@ -113,7 +119,19 @@ app = ->
       h table
       h article
 
-result = render (h app), document?querySelector \#app-root
+App = if Component
+  class App extends Component
+    render: ->
+      actions =
+        open-modal: ~>
+          document.body.classList.add \modal-open
+          @setState modal: true
+        close-modal: ~>
+          @setState modal: false
+          document.body.classList.remove \modal-open
+      app Object.assign actions, @state
+
+result = render (h App || app), document?querySelector \#app-root
 
 try require! tape
 if tape
